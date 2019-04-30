@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ExecutionMapper">
+	<resultMap id="baseResultMap" type="po.Execution">
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="act_id" property="actId" jdbcType="VARCHAR"/>
+	</resultMap>
+
+  <select id="getExecutionByExecutionId" resultMap="baseResultMap" parameterType="string">
+		SELECT ACT_ID_ act_id FROM `act_ru_execution` where ID_ = #{executionId}
+	</select>
+</mapper>
