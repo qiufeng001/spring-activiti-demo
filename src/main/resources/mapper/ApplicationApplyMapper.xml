@@ -2,12 +2,12 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.ApplicationApplyMapper">
-  <select id="get" resultType="po.ApplicationApply" parameterType="int">
+<mapper namespace="com.activiti.test.mapper.ApplicationApplyMapper">
+  <select id="get" resultType="com.activiti.test.po.ApplicationApply" parameterType="int">
 		select * from application_apply where id=#{id}
 	</select>
 
-	<select id="getApplictionIdByTaskId" resultType="po.ApplicationApply" parameterType="string">
+	<select id="getApplictionIdByTaskId" resultType="com.activiti.test.po.ApplicationApply" parameterType="string">
 			SELECT
 				a.*
 			FROM
@@ -17,11 +17,11 @@
 			WHERE t.ID_ = #{taskId}
 	</select>
 
-	<select id="getApplicationIds" resultType="po.ApplicationApply" parameterType="string">
+	<select id="getApplicationIds" resultType="com.activiti.test.po.ApplicationApply" parameterType="string">
 			SELECT id FROM application_apply p WHERE p.userId = #{userId}
 	</select>
 
-	<select id="getTaskList" resultType="pagemodel.Task">
+	<select id="getTaskList" resultType="com.activiti.test.pagemodel.Task">
 		SELECT
 			t.PROC_INST_ID_ processInstanceId,
 			t.PROC_DEF_ID_ processDefinitionId,
@@ -52,13 +52,13 @@
 		</foreach>
 	</select>
 
-  <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="po.ApplicationApply">
-	  insert into application_apply (id,itemlist,applytime,applyer, userId)
-	  values (#{id},#{itemlist},#{applytime},#{applyer}, #{userId})
+  <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.activiti.test.po.ApplicationApply">
+	  insert into application_apply (id,itemlist,applytime,applyer, handlerUser)
+	  values (#{id},#{itemlist},#{applytime},#{applyer}, #{handlerUser})
 	 </insert>
-  <update id="update" parameterType="po.ApplicationApply">
+  <update id="update" parameterType="com.activiti.test.po.ApplicationApply">
 		update application_apply set itemlist=#{itemlist},
-		applytime=#{applytime},applyer=#{applyer},userId=#{userId}
+		applytime=#{applytime},applyer=#{applyer},userId=#{handlerUser}
 		where id=#{id}
 	</update>
 </mapper>
